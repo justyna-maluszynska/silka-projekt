@@ -1,0 +1,4 @@
+[
+    {"id_client": 1,"name": "Jan", "surname": "Kowalski", "age": 21, "card_number": 101},
+    {"id_client": 2,"name": "Wisława", "surname": "Szymborska", "age": 37, "card_number": 102}
+]
