@@ -14,21 +14,21 @@
 <body>
   <header>
     <div id="gym-logo">
-      <a href="#">Siłownia</a>
+      <a href="{{ url_for('home') }}">Siłownia</a>
     </div>
     <nav>
       <ul>
         <li>
-          <a href="#">Klienci</a>
+          <a href="{{ url_for('clients') }}">Klienci</a>
         </li>
         <li>
-          <a href="#">Na siłowni</a>
+          <a href="{{ url_for('on_gym') }}">Na siłowni</a>
         </li>
         <li>
-          <a href="#">Dodaj klienta</a>
+          <a href="{{ url_for('add_client') }}">Dodaj klienta</a>
         </li>
         <li>
-          <a href="#">Dodaj bramkę</a>
+          <a href="{{ url_for('add_gate') }}">Dodaj bramkę</a>
         </li>
       </ul>
     </nav>
@@ -39,16 +39,16 @@
       <div class="bar3"></div>
       <ul class="mobile-menu">
         <li>
-          <a href="#">Klienci</a>
+          <a href="{{ url_for('clients') }}">Klienci</a>
         </li>
         <li>
-          <a href="#">Na siłowni</a>
+          <a href="{{ url_for('on_gym') }}">Na siłowni</a>
         </li>
         <li>
-          <a href="#">Dodaj klienta</a>
+          <a href="{{ url_for('add_client') }}">Dodaj klienta</a>
         </li>
         <li>
-          <a href="#">Dodaj bramkę</a>
+          <a href="{{ url_for('add_gate') }}">Dodaj bramkę</a>
         </li>
       </ul>
     </div>

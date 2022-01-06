@@ -2,61 +2,61 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
-    <title>Siłownia</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/hello.css') }}">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+  <title>Siłownia</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/hello.css') }}">
 </head>
 
 <body>
-    <header>
-        <div id="gym-logo">
-            <a href="#">Siłownia</a>
-        </div>
-        <nav>
-            <ul>
-                <li>
-                    <a href="#">Klienci</a>
-                </li>
-                <li>
-                    <a href="#">Na siłowni</a>
-                </li>
-                <li>
-                    <a href="#">Dodaj klienta</a>
-                </li>
-                <li>
-                    <a href="#">Dodaj bramkę</a>
-                </li>
-            </ul>
-        </nav>
+  <header>
+    <div id="gym-logo">
+      <a href="{{ url_for('home') }}">Siłownia</a>
+    </div>
+    <nav>
+      <ul>
+        <li>
+          <a href="{{ url_for('clients') }}">Klienci</a>
+        </li>
+        <li>
+          <a href="{{ url_for('on_gym') }}">Na siłowni</a>
+        </li>
+        <li>
+          <a href="{{ url_for('add_client') }}">Dodaj klienta</a>
+        </li>
+        <li>
+          <a href="{{ url_for('add_gate') }}">Dodaj bramkę</a>
+        </li>
+      </ul>
+    </nav>
 
-        <div id="hamburger-icon" onclick="this.classList.toggle('open');">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
-            <ul class="mobile-menu">
-                <li>
-                    <a href="#">Klienci</a>
-                </li>
-                <li>
-                    <a href="#">Na siłowni</a>
-                </li>
-                <li>
-                    <a href="#">Dodaj klienta</a>
-                </li>
-                <li>
-                    <a href="#">Dodaj bramkę</a>
-                </li>
-            </ul>
-        </div>
-    </header>
+    <div id="hamburger-icon" onclick="this.classList.toggle('open');">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+      <ul class="mobile-menu">
+        <li>
+          <a href="{{ url_for('clients') }}">Klienci</a>
+        </li>
+        <li>
+          <a href="{{ url_for('on_gym') }}">Na siłowni</a>
+        </li>
+        <li>
+          <a href="{{ url_for('add_client') }}">Dodaj klienta</a>
+        </li>
+        <li>
+          <a href="{{ url_for('add_gate') }}">Dodaj bramkę</a>
+        </li>
+      </ul>
+    </div>
+  </header>
 
-    <main>
-        <img class="gym-image" src="{{ url_for('static', filename='images/gym.svg') }}" alt="Gym image"/>
-    </main>
+  <main>
+    <img class="gym-image" src="{{ url_for('static', filename='images/gym.svg') }}" alt="Gym image" />
+  </main>
 </body>
 
 </html>
