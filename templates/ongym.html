@@ -2,6 +2,25 @@
 
 {% block content %}
 
-<p>miejsce na aktualnie ćwiczących</p>
+<table class="clients-table">
+  <thead>
+    <tr>
+      <td>Imię</td>
+      <td>Nazwisko</td>
+      <td>Godzina wejścia</td>
+      <td>Numer karty</td>
+    </tr>
+  </thead>
+  <tbody>
+    {% for client in clients %}
+    <tr>
+      <td>{{ client['name'] }}</td>
+      <td>{{ client['surname'] }}</td>
+      <td>{{ client['entry_time'] }}</td>
+      <td>{{ client['card_number'] }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 {% endblock %}
