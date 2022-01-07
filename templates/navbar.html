@@ -1,0 +1,41 @@
+<header>
+  <div id="gym-logo">
+    <a href="{{ url_for('home') }}">Siłownia</a>
+  </div>
+  <nav>
+    <ul>
+      <li>
+        <a href="{{ url_for('clients') }}">Klienci</a>
+      </li>
+      <li>
+        <a href="{{ url_for('on_gym') }}">Na siłowni</a>
+      </li>
+      <li>
+        <a href="{{ url_for('add_client') }}">Dodaj klienta</a>
+      </li>
+      <li>
+        <a href="{{ url_for('add_gate') }}">Dodaj bramkę</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div id="hamburger-icon" onclick="this.classList.toggle('open');">
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+    <ul class="mobile-menu">
+      <li>
+        <a href="{{ url_for('clients') }}">Klienci</a>
+      </li>
+      <li>
+        <a href="{{ url_for('on_gym') }}">Na siłowni</a>
+      </li>
+      <li>
+        <a href="{{ url_for('add_client') }}">Dodaj klienta</a>
+      </li>
+      <li>
+        <a href="{{ url_for('add_gate') }}">Dodaj bramkę</a>
+      </li>
+    </ul>
+  </div>
+</header>
