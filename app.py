@@ -1,7 +1,7 @@
 import json
 from flask import Flask, render_template
 
-from utils import enter_client, get_clients, increase_new_card_number, process_card, register_client
+from utils import enter_client, get_clients, increase_new_card_number, process_card, register_client, get_clients_on_gym
 
 app = Flask(__name__)
 
@@ -19,8 +19,10 @@ def add_gate():
 
 @app.route("/clients")
 def clients():
-    return render_template("clients.html")
+    clients = get_clients()
+    return render_template("clients.html", clients=clients)
 
 @app.route("/ongym")
 def on_gym():
-    return render_template("ongym.html")
+    clients = get_clients_on_gym()
+    return render_template("ongym.html", clients=clients)

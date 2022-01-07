@@ -52,7 +52,9 @@ ul li:hover {
 
 main {
     padding-top: 80px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #gym-logo {
@@ -130,4 +132,33 @@ main {
 .gym-image {
     width: 400px;
     height: 400px;
+}
+
+/*clients.html i ongym.html styles*/
+.clients-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1rem;
+    min-width: 400px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.clients-table thead tr {
+    background-color: #f07f13;
+    color: #ffffff;
+    text-align: left;
+    font-size: 1.5rem;
+}
+
+.clients-table th,
+.clients-table td {
+    padding: 12px 15px;
+}
+
+.clients-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.clients-table tbody tr:last-of-type {
+    border-bottom: 2px solid #f07f13;
 }

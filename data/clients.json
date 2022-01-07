@@ -3,19 +3,19 @@
         {
             "name": "Jan",
             "surname": "Kowalski",
-            "age": 21,
+            "date_of_birth": "12-12-2000",
             "card_number": 101
         },
         {
             "name": "Wislawa",
             "surname": "Szymborska",
-            "age": 37,
+            "date_of_birth": "03-01-1991",
             "card_number": 102
         },
         {
             "name": "Jan",
             "surname": "Kowalski",
-            "age": 21,
+            "date_of_birth": "27-03-2002",
             "card_number": 103
         }
     ],

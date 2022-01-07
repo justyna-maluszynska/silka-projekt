@@ -1,7 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<p>miejsce na lsite klientów</p>
-
+<table class="clients-table">
+  <thead>
+    <tr>
+      <td>Imię</td>
+      <td>Nazwisko</td>
+      <td>Data urodzenia</td>
+      <td>Numer karty</td>
+    </tr>
+  </thead>
+  <tbody>
+    {% for client in clients %}
+    <tr>
+      <td>{{ client['name'] }}</td>
+      <td>{{ client['surname'] }}</td>
+      <td>{{ client['date_of_birth'] }}</td>
+      <td>{{ client['card_number'] }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}

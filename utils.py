@@ -15,6 +15,11 @@ def get_clients():
 
     return file_data["clients"]
 
+def get_clients_on_gym():
+    file_data = load_data()
+
+    return file_data["active_clients"]
+
 
 def get_new_card_number():
     file_data = load_data()
