@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
 
+/*general styles*/
+
 * {
     margin: 0;
     padding: 0;
@@ -46,6 +48,11 @@ ul li:hover {
     transition: 0.3s;
     border: 1px solid #fff;
     border-radius: 10px;
+}
+
+main {
+    padding-top: 80px;
+    text-align: center;
 }
 
 #gym-logo {
@@ -116,4 +123,11 @@ ul li:hover {
     #hamburger-icon {
         display: block;
     }
+}
+
+/*index.html styles*/
+
+.gym-image {
+    width: 400px;
+    height: 400px;
 }
