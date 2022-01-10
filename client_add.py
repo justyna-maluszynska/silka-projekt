@@ -6,7 +6,7 @@ import paho.mqtt.client as mqtt
 # The terminal ID - can be any string.
 terminal_id = "T0"
 # The broker name or IP address.
-broker = "localhost"
+broker = "192.168.56.1"
 # broker = "127.0.0.1"
 # broker = "10.0.0.1"
 
