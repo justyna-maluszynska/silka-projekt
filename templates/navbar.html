@@ -5,16 +5,16 @@
   <nav>
     <ul>
       <li>
-        <a href="{{ url_for('clients') }}">Klienci</a>
-      </li>
-      <li>
         <a href="{{ url_for('on_gym') }}">Na siłowni</a>
       </li>
       <li>
-        <a href="{{ url_for('add_client') }}">Dodaj klienta</a>
+        <a href="{{ url_for('clients') }}">Klienci</a>
+      </li>
+      <li>
+        <a href="{{ url_for('add_card') }}">Przypisz kartę</a>
       </li>
         <li>
-        <a href="{{ url_for('terminals') }}">Terminale</a>
+        <a href="{{ url_for('terminals') }}">Bramki</a>
         </li>
       <li>
         <a href="{{ url_for('add_gate') }}">Dodaj bramkę</a>
@@ -28,14 +28,17 @@
     <div class="bar3"></div>
     <ul class="mobile-menu">
       <li>
-        <a href="{{ url_for('clients') }}">Klienci</a>
-      </li>
-      <li>
         <a href="{{ url_for('on_gym') }}">Na siłowni</a>
       </li>
       <li>
-        <a href="{{ url_for('add_client') }}">Dodaj klienta</a>
+        <a href="{{ url_for('clients') }}">Klienci</a>
       </li>
+      <li>
+        <a href="{{ url_for('add_card') }}">Przypisz kartę</a>
+      </li>
+        <li>
+        <a href="{{ url_for('terminals') }}">Bramki</a>
+        </li>
       <li>
         <a href="{{ url_for('add_gate') }}">Dodaj bramkę</a>
       </li>

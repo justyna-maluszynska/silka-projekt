@@ -42,6 +42,11 @@ def register_client(new_client):
     with open(CLIENTS_DATA_FILENAME, 'w') as file:
         json.dump(clients, file, indent=4)
 
+def get_pending_cards():
+    file_data = load_data(CLIENTS_DATA_FILENAME)
+
+    return file_data["pending"]
+
 
 def get_client_data(card_number: int):
     clients = get_clients()

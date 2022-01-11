@@ -163,6 +163,8 @@ main {
     border-bottom: 2px solid #f07f13;
 }
 
+/* terminals.html i addgate.html*/
+
 .form_elem {
     padding: 10px;
     alignment: center;
@@ -172,7 +174,7 @@ label {
     margin-right: 10px;
 }
 
-.send_btt, .add_terminal{
+.send_btt, .add_terminal {
     background-color: #f07f13;
     color: #ffffff;
     text-align: center;
@@ -181,7 +183,7 @@ label {
     min-width: 400px;
 }
 
-.delete_btt{
+.delete_btt {
     width: auto;
     padding: 10px 10px;
 }
@@ -190,4 +192,18 @@ form {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     font-size: 1rem;
     min-width: 400px;
+}
+
+/* addcard.html styles*/
+.add-button {
+    background-color: #f07f13;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 10px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
+}
+
+.add-button:hover {
+    background-color: #d05d01;
+    cursor: pointer;
 }

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<table class="clients-table">
+  <thead>
+    <tr>
+      <td>Terminal</td>
+      <td>Data</td>
+      <td>Godzina</td>
+      <td>Numer karty</td>
+      <td>Akcja</td>
+    </tr>
+  </thead>
+  <tbody>
+    {% for pending_card in pending_cards %}
+    <tr>
+      <td>{{ pending_card['terminal'] }}</td>
+      <td>{{ pending_card['date'] }}</td>
+      <td>{{ pending_card['time'] }}</td>
+      <td>{{ pending_card['card_number'] }}</td>
+      <td><a href="{{ url_for('add_card_form', card_number=pending_card['card_number']) }}"><button class="add-button">Przypisz</button></a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
