@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <table class="clients-table">
+        <thead>
+        <tr>
+            <td>Id</td>
+            <td>Typ</td>
+            <td></td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for terminal in terminals %}
+            <tr>
+                <td>{{ terminal['terminal_id'] }}</td>
+                <td>{{ terminal['type'] }}</td>
+                <td><a href="{{ url_for('remove_gate', terminal_id=terminal['terminal_id']) }}"><button class="delete_btt">Usuń</button></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

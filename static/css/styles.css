@@ -162,3 +162,32 @@ main {
 .clients-table tbody tr:last-of-type {
     border-bottom: 2px solid #f07f13;
 }
+
+.form_elem {
+    padding: 10px;
+    alignment: center;
+}
+
+label {
+    margin-right: 10px;
+}
+
+.send_btt, .add_terminal{
+    background-color: #f07f13;
+    color: #ffffff;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 10px 0;
+    min-width: 400px;
+}
+
+.delete_btt{
+    width: auto;
+    padding: 10px 10px;
+}
+
+form {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    font-size: 1rem;
+    min-width: 400px;
+}
