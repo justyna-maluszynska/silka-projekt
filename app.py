@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 
 from flask_mqtt import Mqtt
 from config import BROKER_URL
-from utils import get_clients, get_clients_on_gym, get_terminals, add_terminal, remove_terminal, get_pending_cards
+from utils import *
 import time
 
 app = Flask(__name__)
@@ -71,6 +71,17 @@ def clients():
     return render_template("clients.html", clients=clients)
 
 
+@app.route("/addclient_handle", methods=['POST'])
+def addclient_handle():
+    new_name = request.form['client_name']
+    new_surname = request.form['client_surname']
+    new_birthday = request.form['client_birthday']
+    card_number = int(request.form['card_number'])
+    register_client(new_name, new_surname, new_birthday, card_number)
+    remove_pending_card(card_number)
+    return add_card()
+
+
 @app.route("/terminals")
 def terminals():
     terminals = get_terminals()
@@ -81,3 +92,7 @@ def terminals():
 def on_gym():
     clients = get_clients_on_gym()
     return render_template("ongym.html", clients=clients)
+
+
+if __name__ == "__main__":
+    app.run()

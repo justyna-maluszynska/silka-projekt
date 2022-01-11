@@ -2,10 +2,26 @@
 
 {% block content %}
 
-<h2>Przypisywanie karty o numerze: {{card_number}}</h2>
+    <h2 class="add_client">Przypisz kartę nr {{card_number}}</h2>
+    <form class="form_client" method="post" action="{{ url_for('addclient_handle') }}">
+        <p class="form_elem">
+            <label for="client_name">Imię:</label>
+            <input type="text" name="client_name" id="client_name" required>
+        </p>
+        <p class="form_elem">
+            <label for="client_surname">Nazwisko:</label>
+            <input type="text" name="client_surname" id="client_surname" required>
+        </p>
+        <p class="form_elem">
+            <label for="client_birthday">Data urodzenia:</label>
+            <input type="date" name="client_birthday" id="client_birthday" required>
+        </p>
+        <p class="form_elem">
+            <label for="card_number">Numer karty:</label>
+            <input type="number" name="card_number" id="card_number" value="{{card_number}}" readonly>
+        </p>
+        <input class="send_btn" type="submit" value="Dodaj klienta">
+    </form>
 
-<form>
-
-</form>
 
 {% endblock %}
