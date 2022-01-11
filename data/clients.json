@@ -27,5 +27,25 @@
             "entry_time": "18:03"
         }
     ],
-    "next_card_number": 104
+    "pending": [
+        {
+            "terminal": "Gate1",
+            "date": "11-01-2022",
+            "time": "12:34",
+            "card_number": 104
+        },
+        {
+            "terminal": "Gate2",
+            "date": "12-01-2022",
+            "time": "15:05",
+            "card_number": 105
+        },
+        {
+            "terminal": "Gate1",
+            "date": "11-01-2022",
+            "time": "06:15",
+            "card_number": 106
+        }
+    ],
+    "next_card_number": 107
 }
