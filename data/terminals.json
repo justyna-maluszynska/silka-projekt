@@ -1,0 +1,12 @@
+{
+    "terminals": [
+        {
+            "terminal_id": "Gate1",
+            "type": "add_client"
+        },
+        {
+            "terminal_id":  "Gate2",
+            "type": "gate"
+        }
+    ]
+}
