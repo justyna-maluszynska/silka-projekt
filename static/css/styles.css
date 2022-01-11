@@ -166,21 +166,31 @@ main {
 /* terminals.html i addgate.html*/
 
 .form_elem {
-    padding: 10px;
+    padding: 20px;
     alignment: center;
+    font-size: 1.25rem;
 }
 
 label {
     margin-right: 10px;
 }
 
-.send_btt, .add_terminal {
+.send_btt, .add_terminal, .add_client {
     background-color: #f07f13;
     color: #ffffff;
     text-align: center;
     font-size: 1.5rem;
     padding: 10px 0;
-    min-width: 400px;
+    min-width: 450px;
+}
+
+.send_btn {
+    background-color: #f07f13;
+    color: #ffffff;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 10px 0;
+    min-width: 200px;
 }
 
 .delete_btt {
@@ -188,10 +198,15 @@ label {
     padding: 10px 10px;
 }
 
+.form_client {
+    padding: 10px 0;
+}
+
 form {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     font-size: 1rem;
-    min-width: 400px;
+    min-width: 450px;
+    text-align: center;
 }
 
 /* addcard.html styles*/
@@ -203,7 +218,7 @@ form {
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
 }
 
-.add-button:hover {
+.add-button:hover, .send_btn:hover, .send_btt:hover {
     background-color: #d05d01;
     cursor: pointer;
 }

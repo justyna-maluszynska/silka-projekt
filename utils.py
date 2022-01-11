@@ -35,16 +35,8 @@ def increase_new_card_number():
         json.dump(file_data, file, indent=4)
 
 
-# dodaj nowego klienta
-def register_client(new_client):
-    clients = get_clients()
-    clients.append(new_client)
-    with open(CLIENTS_DATA_FILENAME, 'w') as file:
-        json.dump(clients, file, indent=4)
-
 def get_pending_cards():
     file_data = load_data(CLIENTS_DATA_FILENAME)
-
     return file_data["pending"]
 
 
@@ -53,6 +45,20 @@ def get_client_data(card_number: int):
     client_data = list(
         filter(lambda x: x["card_number"] == card_number, clients))[0]
     return client_data
+
+
+# dodaj nowego klienta
+def register_client(new_name, new_surname, new_birthday, card_number):
+    clients = load_data(CLIENTS_DATA_FILENAME)
+    clients['clients'].append({
+        "name": new_name,
+        "surname": new_surname,
+        "date_of_birth": new_birthday,
+        "card_number": card_number
+    })
+
+    with open(CLIENTS_DATA_FILENAME, 'w') as file:
+        json.dump(clients, file, indent=4)
 
 
 # klient wchodzi na siłkę
@@ -90,6 +96,16 @@ def process_card(card_number, time):
         enter_client(card_number, time, client[0])
 
 
+# usun oczekujaca karte z pending
+def remove_pending_card(card_number):
+    file_data = load_data(CLIENTS_DATA_FILENAME)
+    pending = list(filter(lambda x: x["card_number"] != card_number, file_data['pending']))
+    file_data['pending'] = pending
+
+    with open(CLIENTS_DATA_FILENAME, 'w') as file:
+        json.dump(file_data, file, indent=4)
+
+
 def get_terminals():
     file_data = load_data(TERMINALS_DATA_FILENAME)
     return file_data["terminals"]
@@ -112,3 +128,5 @@ def remove_terminal(terminal_id):
 
     with open(TERMINALS_DATA_FILENAME, 'w') as file:
         json.dump(file_data, file, indent=4)
+
+
