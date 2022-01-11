@@ -1,7 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<p>miejsce na dodanie bramki</p>
+    <h2 class="add_terminal">Dodaj terminal</h2>
+    <form method="post" action="{{ url_for('addgate_handle') }}">
+        <p class="form_elem">
+            <label for="terminal_id">Id:</label>
+            <input type="text" name="terminal_id" id="terminal_id">
+        </p>
+        <p class="form_elem">
+            <label for="select_type">Typ terminala:</label>
+                <select id="select_type" name="type">
+                    <option>terminal rejestracji</option>
+                    <option>barmka wejsciowa</option>
+                </select>
+        </p>
+        <input class="send_btt" type="submit" value="Wyślij">
+    </form>
 
 {% endblock %}
