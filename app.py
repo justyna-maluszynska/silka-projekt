@@ -8,25 +8,33 @@ import time
 app = Flask(__name__)
 app.config['MQTT_BROKER_URL'] = BROKER_URL
 
-
+terminal_id = "MASTER"
 client = Mqtt(app)
 
 
-#zacznij subskrybować temat od razu po połączeniu z brokerem
+# zacznij subskrybować temat od razu po połączeniu z brokerem
 @client.on_connect()
 def handle_connect(client, userdata, flags, rc):
-        client.subscribe('card/id')
+    client.subscribe('card/id')
 
 
-#metoda dla konkretnego tematu
+# metoda dla konkretnego tematu
 @client.on_topic('card/id')
 def handle_card_id(client, userdata, message):
-    # Decode message.
     message_decoded = (str(message.payload.decode("utf-8"))).split(".")
-
-    # Print message to console.
-    if message_decoded[0] != "Client connected" and message_decoded[0] != "Client disconnected":
-        print(time.ctime() + ", " + message_decoded[0] +" used the RFID card.")
+    if message_decoded[1] == "GET_ACTIVE":
+        active_clients = get_active_clients_id()
+        all_clients = get_clients_id()
+        client.publish("card/list", all_clients + "." + "ALL", )
+        client.publish("card/list", active_clients + "." + "ACTIVE", )
+    elif message_decoded[1] == "ACTIVATE":
+        print(time.ctime() + ", " + message_decoded[0] + " used the RFID card to " + message_decoded[1])
+        t = time.ctime().split()
+        client = get_client_data(int(message_decoded[0]))
+        enter_client(int(message_decoded[0]), t[3], client)
+    elif message_decoded[1] == "DEACTIVATE":
+        print(time.ctime() + ", " + message_decoded[0] + " used the RFID card to " + message_decoded[1])
+        get_away_client(int(message_decoded[0]))
     else:
         print(message_decoded[0] + " : " + message_decoded[1])
 
@@ -39,11 +47,12 @@ def home():
 @app.route("/addcard")
 def add_card():
     pending_cards = get_pending_cards()
-    return render_template("addcard.html", pending_cards = pending_cards)
+    return render_template("addcard.html", pending_cards=pending_cards)
+
 
 @app.route("/addcard-form/<card_number>")
 def add_card_form(card_number):
-    return render_template("addclientform.html", card_number = card_number)
+    return render_template("addclientform.html", card_number=card_number)
 
 
 @app.route("/addgate")
