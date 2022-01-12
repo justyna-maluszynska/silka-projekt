@@ -1,14 +1,22 @@
+import random
 import tkinter
-from random import randint
 from tkinter import CENTER
 import paho.mqtt.client as mqtt
 
 # The terminal ID - can be any string.
-terminal_id = "T0"
+terminal_id = "Gate1"
 # The broker name or IP address.
 broker = "localhost"
 # broker = "127.0.0.1"
 # broker = "10.0.0.1"
+
+
+class Record:
+    active_list = []
+    random_card = 101  # Access through class
+
+
+current_record = Record()
 
 # The MQTT client.
 client = mqtt.Client()
@@ -18,24 +26,33 @@ window = tkinter.Tk()
 
 
 def send_message(mess):
-    client.publish("card/id", mess + "." + terminal_id, )
-
-
-def get_random_id_from_db():
-    #kod wyciągania dostępnych id z bazy i losowania jedengo
-    return "123456"
-
-
-def get_active():
-    #kod wyciągania listy osob obecnie na silowni
-    return "list"
+    client.publish("card/id", terminal_id + "." + mess, )
 
 
 def send_id():
-    random_id = get_random_id_from_db()  # losowe id z istniejących w baze
-    active_list = get_active()  # lista osób obecnie na silowni
-    # sprawdzenie czy dana osoba jest i odpowiednia informacja zwrotna
-    client.publish("card/id", "jakies info" + "." + terminal_id, )
+    send_message("GET_ACTIVE")
+    client.on_message = process_message
+    if current_record.random_card in current_record.active_list:
+        client.publish("card/id", str(current_record.random_card) + "." + "DEACTIVATE", )
+    else:
+        client.publish("card/id", str(current_record.random_card) + "." + "ACTIVATE", )
+
+
+def process_message(client, userdata, message):
+    # Decode message.
+    message_decoded = (str(message.payload.decode("utf-8"))).split(".")
+
+    if message_decoded[1] == "ALL":
+        print(message_decoded[0] + " : " + message_decoded[1])
+        a_list = message_decoded[0].split()
+        map_object = map(int, a_list)
+        client_list = list(map_object)
+        current_record.random_card = random.choice(client_list)
+    else:
+        print(message_decoded[0] + " : " + message_decoded[1])
+        a_list = message_decoded[0].split()
+        map_object = map(int, a_list)
+        current_record.active_list = list(map_object)
 
 
 def add_card_window():
@@ -55,6 +72,10 @@ def add_card_window():
 def connect_to_broker():
     # Connect to the broker.
     client.connect(broker)
+    client.loop_start()
+    # Set subscriber
+    client.subscribe('card/list')
+    print("anything")
     # Send message about conenction.
     send_message("Client connected")
 
@@ -63,11 +84,13 @@ def disconnect_from_broker():
     # Send message about disconenction.
     send_message("Client disconnected")
     # Disconnet the client.
+    client.loop_stop()
     client.disconnect()
 
 
 def run_sender():
     connect_to_broker()
+
     # create_main_window()
     add_card_window()
 

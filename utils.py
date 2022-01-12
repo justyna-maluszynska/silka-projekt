@@ -16,6 +16,24 @@ def get_clients():
     return file_data["clients"]
 
 
+def get_clients_id():
+    all_clients = get_clients()
+    all_clients_id = ""
+    for cl in all_clients:
+        all_clients_id += str(cl['card_number'])
+        all_clients_id += " "
+    return all_clients_id
+
+
+def get_active_clients_id():
+    active_clients = get_clients_on_gym()
+    active_clients_id = ""
+    for cl in active_clients:
+        active_clients_id += str(cl['card_number'])
+        active_clients_id += " "
+    return active_clients_id
+
+
 def get_clients_on_gym():
     file_data = load_data(CLIENTS_DATA_FILENAME)
 
@@ -128,5 +146,3 @@ def remove_terminal(terminal_id):
 
     with open(TERMINALS_DATA_FILENAME, 'w') as file:
         json.dump(file_data, file, indent=4)
-
-
