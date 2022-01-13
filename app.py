@@ -24,18 +24,27 @@ def handle_connect(client, userdata, flags, rc):
 def handle_card_id(client, userdata, message):
     message_decoded = (str(message.payload.decode("utf-8"))).split(".")
     if message_decoded[1] == "GET_ACTIVE":
-        active_clients = get_active_clients_id()
-        all_clients = get_clients_id()
-        client.publish("card/list", all_clients + "." + "ALL", )
-        client.publish("card/list", active_clients + "." + "ACTIVE", )
+        if validate_terminal(message_decoded[0]):
+            active_clients = get_active_clients_id()
+            all_clients = get_clients_id()
+            client.publish("card/list", all_clients + "." + "ALL", )
+            client.publish("card/list", active_clients + "." + "ACTIVE", )
+        else:
+            pass
     elif message_decoded[1] == "ACTIVATE":
-        print(time.ctime() + ", " + message_decoded[2] + " used the RFID card to " + message_decoded[1])
-        t = time.ctime().split()
-        client_a = get_client_data(int(message_decoded[2]))
-        enter_client(int(message_decoded[2]), t[3], client_a)
+        if validate_terminal(message_decoded[0]):
+            print(time.ctime() + ", " + message_decoded[2] + " used the RFID card to " + message_decoded[1])
+            t = time.ctime().split()
+            client_a = get_client_data(int(message_decoded[2]))
+            enter_client(int(message_decoded[2]), t[3], client_a)
+        else:
+            pass
     elif message_decoded[1] == "DEACTIVATE":
-        print(time.ctime() + ", " + message_decoded[2] + " used the RFID card to " + message_decoded[1])
-        get_away_client(int(message_decoded[2]))
+        if validate_terminal(message_decoded[0]):
+            print(time.ctime() + ", " + message_decoded[2] + " used the RFID card to " + message_decoded[1])
+            get_away_client(int(message_decoded[2]))
+        else:
+            pass
     else:
         print(message_decoded[0] + " : " + message_decoded[1])
     global flag
