@@ -1,5 +1,8 @@
 import random
+import time
 import tkinter
+
+
 from tkinter import CENTER
 import paho.mqtt.client as mqtt
 
@@ -10,13 +13,8 @@ broker = "localhost"
 # broker = "127.0.0.1"
 # broker = "10.0.0.1"
 
-
-class Record:
-    active_list = []
-    random_card = 101  # Access through class
-
-
-current_record = Record()
+active_list = []
+random_card = 101  # Access through class
 
 # The MQTT client.
 client = mqtt.Client()
@@ -30,29 +28,30 @@ def send_message(mess):
 
 
 def send_id():
+    global active_list
+    global random_card
     send_message("GET_ACTIVE")
     client.on_message = process_message
-    if current_record.random_card in current_record.active_list:
-        client.publish("card/id", str(current_record.random_card) + "." + "DEACTIVATE", )
+    time.sleep(1)
+    if random_card in active_list:
+        client.publish("card/id", str(random_card) + "." + "DEACTIVATE", )
     else:
-        client.publish("card/id", str(current_record.random_card) + "." + "ACTIVATE", )
+        client.publish("card/id", str(random_card) + "." + "ACTIVATE", )
 
 
 def process_message(client, userdata, message):
-    # Decode message.
     message_decoded = (str(message.payload.decode("utf-8"))).split(".")
+    print(message_decoded[0] + " : " + message_decoded[1])
+    a_list = message_decoded[0].split()
+    map_object = map(int, a_list)
 
     if message_decoded[1] == "ALL":
-        print(message_decoded[0] + " : " + message_decoded[1])
-        a_list = message_decoded[0].split()
-        map_object = map(int, a_list)
         client_list = list(map_object)
-        current_record.random_card = random.choice(client_list)
+        global random_card
+        random_card = random.choice(client_list)
     else:
-        print(message_decoded[0] + " : " + message_decoded[1])
-        a_list = message_decoded[0].split()
-        map_object = map(int, a_list)
-        current_record.active_list = list(map_object)
+        global active_list
+        active_list = list(map_object)
 
 
 def add_card_window():
@@ -75,7 +74,6 @@ def connect_to_broker():
     client.loop_start()
     # Set subscriber
     client.subscribe('card/list')
-    print("anything")
     # Send message about conenction.
     send_message("Client connected")
 
@@ -90,13 +88,10 @@ def disconnect_from_broker():
 
 def run_sender():
     connect_to_broker()
-
     # create_main_window()
     add_card_window()
-
     # Start to display window (It will stay here until window is displayed)
     window.mainloop()
-
     disconnect_from_broker()
 
 
