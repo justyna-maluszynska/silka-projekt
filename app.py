@@ -17,6 +17,7 @@ flag = False
 @client.on_connect()
 def handle_connect(client, userdata, flags, rc):
     client.subscribe(("card/check/+", 2))
+    client.subscribe(("card/register/+", 2))
 
 
 # metoda dla konkretnego tematu
@@ -27,8 +28,8 @@ def handle_card_id(client, userdata, message):
         if validate_terminal(message_decoded[0]):
             active_clients = get_active_clients_id()
             all_clients = get_clients_id()
-            client.publish("card/list", all_clients + "." + "ALL", )
-            client.publish("card/list", active_clients + "." + "ACTIVE", )
+            client.publish("card/check/" + terminal_id, all_clients + "." + "ALL", )
+            client.publish("card/check/" + terminal_id, active_clients + "." + "ACTIVE", )
         else:
             pass
     elif message_decoded[1] == "ACTIVATE":
@@ -49,6 +50,20 @@ def handle_card_id(client, userdata, message):
         print(message_decoded[0] + " : " + message_decoded[1])
     global flag
     flag = True
+
+
+# metoda dla konkretnego tematu
+@client.on_topic("card/register/+")
+def handle_add_card(client, userdata, message):
+    message_decoded = (str(message.payload.decode("utf-8"))).split(".")
+    if message_decoded[1] == "ADD":
+        if validate_terminal(message_decoded[0]):
+            print(message_decoded[0] + " : " + message_decoded[1] + ' : ' + message_decoded[2] + " : " + message_decoded[3])
+            add_card_to_pending(message_decoded[0], message_decoded[2], message_decoded[3])
+        else:
+            pass
+    else:
+        print(message_decoded[0] + " : " + message_decoded[1])
 
 
 @app.route("/")

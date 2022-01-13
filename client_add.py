@@ -1,4 +1,6 @@
+import time
 import tkinter
+from datetime import date
 from random import randint
 from tkinter import CENTER
 import paho.mqtt.client as mqtt
@@ -19,19 +21,14 @@ window = tkinter.Tk()
 
 
 def send_message(mess):
-    client.publish("card/id", mess + "." + terminal_id, )
+    client.publish("card/register/" + terminal_id, terminal_id + "." + mess, 0)
 
 
-def random_with_N_digits(n):
-    range_start = 10 ** (n - 1)
-    range_end = (10 ** n) - 1
-    return randint(range_start, range_end)
-
-
-def draw_id():
-    random_id = random_with_N_digits(6)  # losowe id
-    # tu warto sprawdzić czy już go nie ma w bazie
-    client.publish("card/id", str(random_id) + "." + terminal_id, )
+def send_date():
+    currTime = time.ctime().split()
+    today = date.today()
+    d = today.strftime("%d-%m-%Y")
+    send_message('ADD' + '.' + d + '.' + currTime[3])
 
 
 def add_card_window():
@@ -43,7 +40,7 @@ def add_card_window():
                                 width="200", font=("Sans-serif", 12, "bold"))
     intro_label.pack()
 
-    add_button = tkinter.Button(window, text="SWIPE", command=lambda: draw_id(), padx=15, pady=15,
+    add_button = tkinter.Button(window, text="SWIPE", command=lambda: send_date(), padx=15, pady=15,
                                 bg="#f07f13", fg="white", font=("Sans-serif", 14, "bold"))
     add_button.place(relx=0.5, rely=0.5, anchor=CENTER)
 
@@ -51,6 +48,9 @@ def add_card_window():
 def connect_to_broker():
     # Connect to the broker.
     client.connect(broker)
+    client.loop_start()
+    # Set subscriber
+    client.subscribe(("card/register/+", 0))
     # Send message about conenction.
     send_message("Client connected")
 
@@ -58,6 +58,7 @@ def connect_to_broker():
 def disconnect_from_broker():
     # Send message about disconenction.
     send_message("Client disconnected")
+    client.loop_stop()
     # Disconnet the client.
     client.disconnect()
 

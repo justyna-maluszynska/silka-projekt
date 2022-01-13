@@ -21,35 +21,35 @@
     ],
     "active_clients": [
         {
-            "name": "Jan",
-            "surname": "Kowalski",
-            "card_number": 103,
-            "entry_time": "20:56:09"
-        },
-        {
             "name": "Wislawa",
             "surname": "Szymborska",
             "card_number": 102,
-            "entry_time": "21:09:16"
+            "entry_time": "20:05:52"
+        },
+        {
+            "name": "Jan",
+            "surname": "Kowalski",
+            "card_number": 101,
+            "entry_time": "20:12:25"
         }
     ],
     "pending": [
         {
             "terminal": "Gate1",
             "date": "11-01-2022",
-            "time": "12:34",
+            "time": "12:34:17",
             "card_number": 104
         },
         {
             "terminal": "Gate2",
             "date": "12-01-2022",
-            "time": "15:05",
+            "time": "15:05:33",
             "card_number": 105
         },
         {
             "terminal": "Gate1",
-            "date": "11-01-2022",
-            "time": "06:15",
+            "date": "13-01-2022",
+            "time": "22:24:07",
             "card_number": 106
         }
     ],
