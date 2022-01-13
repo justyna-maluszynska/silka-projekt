@@ -114,6 +114,27 @@ def process_card(card_number, time):
         enter_client(card_number, time, client[0])
 
 
+def increment_next_card_number():
+    current_next = get_new_card_number()
+    file_data = load_data(CLIENTS_DATA_FILENAME)
+    file_data['next_card_number'] = (current_next + 1)
+    with open(CLIENTS_DATA_FILENAME, 'w') as file:
+        json.dump(file_data, file, indent=4)
+
+
+def add_card_to_pending(terminal, date, time):
+    file_data = load_data(CLIENTS_DATA_FILENAME)
+    file_data['pending'].append({
+        "terminal": terminal,
+        "date": date,
+        "time": time,
+        "card_number": get_new_card_number()
+    })
+    with open(CLIENTS_DATA_FILENAME, 'w') as file:
+        json.dump(file_data, file, indent=4)
+    increment_next_card_number()
+
+
 # usun oczekujaca karte z pending
 def remove_pending_card(card_number):
     file_data = load_data(CLIENTS_DATA_FILENAME)
@@ -149,6 +170,5 @@ def remove_terminal(terminal_id):
 
 
 def validate_terminal(terminal_id):
-    print(terminal_id)
     terminals = get_terminals()
     return any(terminal["terminal_id"] == terminal_id for terminal in terminals)

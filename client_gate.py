@@ -13,10 +13,8 @@ broker = "localhost"
 # broker = "127.0.0.1"
 # broker = "10.0.0.1"
 
-
 active_list = []
-random_card = 0  # Access through class
-
+random_card = 0
 
 # The MQTT client.
 client = mqtt.Client()
@@ -39,7 +37,6 @@ def send_id():
         send_message("DEACTIVATE" + "." + str(random_card))
     else:
         send_message("ACTIVATE" + "." + str(random_card))
-
 
 
 def process_message(client, userdata, message):
@@ -76,7 +73,7 @@ def connect_to_broker():
     client.connect(broker)
     client.loop_start()
     # Set subscriber
-    client.subscribe('card/list')
+    client.subscribe(("card/check/+", 2))
     # Send message about conenction.
     send_message("Client connected")
 
