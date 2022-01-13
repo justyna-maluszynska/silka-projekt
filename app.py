@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 
 from flask_mqtt import Mqtt
 from config import BROKER_URL
@@ -10,16 +10,17 @@ app.config['MQTT_BROKER_URL'] = BROKER_URL
 
 terminal_id = "MASTER"
 client = Mqtt(app)
+flag = False
 
 
 # zacznij subskrybować temat od razu po połączeniu z brokerem
 @client.on_connect()
 def handle_connect(client, userdata, flags, rc):
-    client.subscribe('card/id')
+    client.subscribe(("card/check/+", 2))
 
 
 # metoda dla konkretnego tematu
-@client.on_topic('card/id')
+@client.on_topic("card/check/+")
 def handle_card_id(client, userdata, message):
     message_decoded = (str(message.payload.decode("utf-8"))).split(".")
     if message_decoded[1] == "GET_ACTIVE":
@@ -28,15 +29,17 @@ def handle_card_id(client, userdata, message):
         client.publish("card/list", all_clients + "." + "ALL", )
         client.publish("card/list", active_clients + "." + "ACTIVE", )
     elif message_decoded[1] == "ACTIVATE":
-        print(time.ctime() + ", " + message_decoded[0] + " used the RFID card to " + message_decoded[1])
+        print(time.ctime() + ", " + message_decoded[2] + " used the RFID card to " + message_decoded[1])
         t = time.ctime().split()
-        client = get_client_data(int(message_decoded[0]))
-        enter_client(int(message_decoded[0]), t[3], client)
+        client_a = get_client_data(int(message_decoded[2]))
+        enter_client(int(message_decoded[2]), t[3], client_a)
     elif message_decoded[1] == "DEACTIVATE":
-        print(time.ctime() + ", " + message_decoded[0] + " used the RFID card to " + message_decoded[1])
-        get_away_client(int(message_decoded[0]))
+        print(time.ctime() + ", " + message_decoded[2] + " used the RFID card to " + message_decoded[1])
+        get_away_client(int(message_decoded[2]))
     else:
         print(message_decoded[0] + " : " + message_decoded[1])
+    global flag
+    flag = True
 
 
 @app.route("/")
@@ -77,7 +80,13 @@ def remove_gate(terminal_id):
 @app.route("/clients")
 def clients():
     clients = get_clients()
-    return render_template("clients.html", clients=clients)
+    global flag
+    while True:
+        if flag == False:
+            time.sleep(1)
+        else:
+            flag = False
+            return render_template("clients.html", clients=clients)
 
 
 @app.route("/addclient_handle", methods=['POST'])

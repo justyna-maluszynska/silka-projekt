@@ -7,14 +7,16 @@ from tkinter import CENTER
 import paho.mqtt.client as mqtt
 
 # The terminal ID - can be any string.
-terminal_id = "Gate1"
+terminal_id = "Gate3"
 # The broker name or IP address.
 broker = "localhost"
 # broker = "127.0.0.1"
 # broker = "10.0.0.1"
 
+
 active_list = []
-random_card = 101  # Access through class
+random_card = 0  # Access through class
+
 
 # The MQTT client.
 client = mqtt.Client()
@@ -24,7 +26,7 @@ window = tkinter.Tk()
 
 
 def send_message(mess):
-    client.publish("card/id", terminal_id + "." + mess, )
+    client.publish("card/check/" + terminal_id, terminal_id + "." + mess, 2)
 
 
 def send_id():
@@ -34,9 +36,10 @@ def send_id():
     client.on_message = process_message
     time.sleep(1)
     if random_card in active_list:
-        client.publish("card/id", str(random_card) + "." + "DEACTIVATE", )
+        send_message("DEACTIVATE" + "." + str(random_card))
     else:
-        client.publish("card/id", str(random_card) + "." + "ACTIVATE", )
+        send_message("ACTIVATE" + "." + str(random_card))
+
 
 
 def process_message(client, userdata, message):
