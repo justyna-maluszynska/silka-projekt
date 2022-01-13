@@ -146,3 +146,9 @@ def remove_terminal(terminal_id):
 
     with open(TERMINALS_DATA_FILENAME, 'w') as file:
         json.dump(file_data, file, indent=4)
+
+
+def validate_terminal(terminal_id):
+    print(terminal_id)
+    terminals = get_terminals()
+    return any(terminal["terminal_id"] == terminal_id for terminal in terminals)
