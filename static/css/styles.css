@@ -175,7 +175,7 @@ label {
     margin-right: 10px;
 }
 
-.send_btt, .add_terminal, .add_client {
+.add_terminal, .add_client {
     background-color: #f07f13;
     color: #ffffff;
     text-align: center;
@@ -184,7 +184,7 @@ label {
     min-width: 450px;
 }
 
-.send_btn {
+.send_btt, .send_btn {
     background-color: #f07f13;
     color: #ffffff;
     text-align: center;
@@ -198,15 +198,12 @@ label {
     padding: 10px 10px;
 }
 
-.form_client {
-    padding: 10px 0;
-}
-
 form {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     font-size: 1rem;
     min-width: 450px;
     text-align: center;
+    padding: 10px 0;
 }
 
 /* addcard.html styles*/

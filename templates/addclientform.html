@@ -3,7 +3,7 @@
 {% block content %}
 
     <h2 class="add_client">Przypisz kartę nr {{card_number}}</h2>
-    <form class="form_client" method="post" action="{{ url_for('addclient_handle') }}">
+    <form method="post" action="{{ url_for('addclient_handle') }}">
         <p class="form_elem">
             <label for="client_name">Imię:</label>
             <input type="text" name="client_name" id="client_name" required>
