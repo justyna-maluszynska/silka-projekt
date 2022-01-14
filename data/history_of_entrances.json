@@ -1,0 +1,76 @@
+{
+    "entrances": [
+        {
+            "name": "Wislawa",
+            "surname": "Szymborska",
+            "card_number": 102,
+            "entry_time": "20:05:52",
+            "exit_time": "21:10:04",
+            "date": "12-12-2021"
+        },
+        {
+            "name": "Wislawa",
+            "surname": "Szymborska",
+            "card_number": 102,
+            "entry_time": "14:15:12",
+            "exit_time": "16:10:00",
+            "date": "14-12-2021"
+        },
+        {
+            "name": "Jan",
+            "surname": "Kowalski",
+            "card_number": 101,
+            "entry_time": "06:45:35",
+            "exit_time": "07:50:04",
+            "date": "17-12-2021"
+        },
+        {
+            "name": "Jan",
+            "surname": "Kowalski",
+            "card_number": 101,
+            "entry_time": "19:25:49",
+            "exit_time": "21:02:07",
+            "date": "19-12-2021"
+        },
+        {
+            "name": "Wislawa",
+            "surname": "Szymborska",
+            "card_number": 102,
+            "entry_time": "17:11:23",
+            "exit_time": "17:59:39",
+            "date": "20-12-2021"
+        },
+        {
+            "name": "Jan",
+            "surname": "Kowalski",
+            "card_number": 103,
+            "entry_time": "15:50:52",
+            "exit_time": "17:01:04",
+            "date": "01-01-2022"
+        },
+        {
+            "name": "Jan",
+            "surname": "Kowalski",
+            "card_number": 103,
+            "entry_time": "17:24:24",
+            "exit_time": "18:31:54",
+            "date": "05-01-2022"
+        },
+        {
+            "name": "Anna",
+            "surname": "Nowak",
+            "card_number": 99,
+            "entry_time": "07:15:20",
+            "exit_time": "10:10:30",
+            "date": "02-01-2022"
+        },
+        {
+            "name": "Dorota",
+            "surname": "Przybysz",
+            "card_number": 98,
+            "entry_time": "11:47:28",
+            "exit_time": "13:10:02",
+            "date": "10-01-2022"
+        }
+    ]
+}

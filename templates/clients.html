@@ -8,6 +8,7 @@
       <td>Nazwisko</td>
       <td>Data urodzenia</td>
       <td>Numer karty</td>
+      <td>Historia</td>
     </tr>
   </thead>
   <tbody>
@@ -17,6 +18,7 @@
       <td>{{ client['surname'] }}</td>
       <td>{{ client['date_of_birth'] }}</td>
       <td>{{ client['card_number'] }}</td>
+      <td><a href="{{ url_for('history_of_client', client_card_number=client['card_number']) }}"><button class="add-button">Historia wejść</button></a></td>
     </tr>
     {% endfor %}
   </tbody>

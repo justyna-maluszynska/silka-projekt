@@ -10,7 +10,6 @@ app.config['MQTT_BROKER_URL'] = BROKER_URL
 
 terminal_id = "MASTER"
 client = Mqtt(app)
-flag = False
 
 
 # zacznij subskrybować temat od razu po połączeniu z brokerem
@@ -104,13 +103,7 @@ def remove_gate(terminal_id):
 @app.route("/clients")
 def clients():
     clients = get_clients()
-    global flag
-    while True:
-        if flag == False:
-            time.sleep(1)
-        else:
-            flag = False
-            return render_template("clients.html", clients=clients)
+    return render_template("clients.html", clients=clients)
 
 
 @app.route("/addclient_handle", methods=['POST'])
@@ -134,6 +127,16 @@ def terminals():
 def on_gym():
     clients = get_clients_on_gym()
     return render_template("ongym.html", clients=clients)
+
+@app.route("/history")
+def history():
+    entrances = get_history_of_all_entrances()
+    return render_template("history.html", entrances=entrances)
+
+@app.route("/history-of-client/<client_card_number>")
+def history_of_client(client_card_number):
+    entrances = get_history_of_clients_entrances(int(client_card_number))
+    return render_template("history.html", entrances=entrances)
 
 
 if __name__ == "__main__":

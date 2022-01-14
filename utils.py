@@ -1,6 +1,6 @@
 import json
 
-from config import CLIENTS_DATA_FILENAME, TERMINALS_DATA_FILENAME
+from config import CLIENTS_DATA_FILENAME, TERMINALS_DATA_FILENAME, ENTRANCES_HISTORY
 
 
 def load_data(filename):
@@ -56,6 +56,17 @@ def increase_new_card_number():
 def get_pending_cards():
     file_data = load_data(CLIENTS_DATA_FILENAME)
     return file_data["pending"]
+
+
+def get_history_of_all_entrances():
+    file_data = load_data(ENTRANCES_HISTORY)
+    return file_data["entrances"]
+
+
+def get_history_of_clients_entrances(client_card_number: int):
+    file_data = load_data(ENTRANCES_HISTORY)["entrances"]
+    filtered_data = list(filter(lambda entrance: entrance["card_number"] == client_card_number, file_data))
+    return filtered_data
 
 
 def get_client_data(card_number: int):
