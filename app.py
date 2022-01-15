@@ -1,9 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for
+import threading
+import time
 
+from flask import Flask, render_template, request, redirect, url_for
 from flask_mqtt import Mqtt
+
 from config import BROKER_URL
 from utils import *
-import time
 
 app = Flask(__name__)
 app.config['MQTT_BROKER_URL'] = BROKER_URL
@@ -47,8 +49,6 @@ def handle_card_id(client, userdata, message):
             pass
     else:
         print(message_decoded[0] + " : " + message_decoded[1])
-    global flag
-    flag = True
 
 
 # metoda dla konkretnego tematu
@@ -57,8 +57,18 @@ def handle_add_card(client, userdata, message):
     message_decoded = (str(message.payload.decode("utf-8"))).split(".")
     if message_decoded[1] == "ADD":
         if validate_terminal(message_decoded[0]):
-            print(message_decoded[0] + " : " + message_decoded[1] + ' : ' + message_decoded[2] + " : " + message_decoded[3])
+            print(
+                message_decoded[0] + " : " + message_decoded[1] + ' : ' + message_decoded[2] + " : " + message_decoded[
+                    3])
             add_card_to_pending(message_decoded[0], message_decoded[2], message_decoded[3])
+        else:
+            pass
+    if message_decoded[1] == "REMOVE":
+        if validate_terminal(message_decoded[0]):
+            print(
+                message_decoded[0] + " : " + message_decoded[1] + ' : ' + message_decoded[2] + " : " + message_decoded[
+                    3])
+            add_to_unregister()
         else:
             pass
     else:
@@ -100,6 +110,14 @@ def remove_gate(terminal_id):
     return terminals()
 
 
+@app.route('/remove_client/<client_card_number>')
+def remove_client(client_card_number):
+    if unregister(client_card_number):
+        return clients()
+    else:
+        return render_template("notlisted.html")
+
+
 @app.route("/clients")
 def clients():
     clients = get_clients()
@@ -128,10 +146,12 @@ def on_gym():
     clients = get_clients_on_gym()
     return render_template("ongym.html", clients=clients)
 
+
 @app.route("/history")
 def history():
     entrances = get_history_of_all_entrances()
     return render_template("history.html", entrances=entrances)
+
 
 @app.route("/history-of-client/<client_card_number>")
 def history_of_client(client_card_number):

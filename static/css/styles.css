@@ -193,11 +193,6 @@ label {
     min-width: 200px;
 }
 
-.delete_btt {
-    width: auto;
-    padding: 10px 10px;
-}
-
 form {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     font-size: 1rem;

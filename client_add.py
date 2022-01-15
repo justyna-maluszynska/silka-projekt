@@ -3,6 +3,7 @@ import tkinter
 from datetime import date
 from random import randint
 from tkinter import CENTER
+
 import paho.mqtt.client as mqtt
 
 # The terminal ID - can be any string.
@@ -28,7 +29,11 @@ def send_date():
     currTime = time.ctime().split()
     today = date.today()
     d = today.strftime("%d-%m-%Y")
-    send_message('ADD' + '.' + d + '.' + currTime[3])
+    unregister = randint(0, 100)
+    if unregister > 80:
+        send_message('REMOVE' + '.' + d + '.' + currTime[3])
+    else:
+        send_message('ADD' + '.' + d + '.' + currTime[3])
 
 
 def add_card_window():

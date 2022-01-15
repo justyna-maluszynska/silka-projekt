@@ -1,4 +1,5 @@
 import json
+from random import randint, choice
 
 from config import CLIENTS_DATA_FILENAME, TERMINALS_DATA_FILENAME, ENTRANCES_HISTORY
 
@@ -154,6 +155,32 @@ def remove_pending_card(card_number):
 
     with open(CLIENTS_DATA_FILENAME, 'w') as file:
         json.dump(file_data, file, indent=4)
+
+
+def add_to_unregister():
+    file_data = load_data(CLIENTS_DATA_FILENAME)
+    card_numbers = [x["card_number"] for x in file_data['clients']]
+    card_number = choice(card_numbers)
+    unregister_client = list(filter(lambda x: x["card_number"] == card_number, file_data['clients']))
+    file_data['unregister'].append(unregister_client)
+    with open(CLIENTS_DATA_FILENAME, 'w') as file:
+        json.dump(file_data, file, indent=4)
+
+
+def unregister(card_number):
+    card_number = int(card_number)
+    file_data = load_data(CLIENTS_DATA_FILENAME)
+    unregister = list(filter(lambda x: x["card_number"] == card_number, file_data['unregister']))
+    if len(unregister) > 0:
+        clients = list(filter(lambda x: x["card_number"] != card_number, file_data['clients']))
+        new_unregister_list = list(filter(lambda x: x["card_number"] != card_number, file_data['unregister']))
+        file_data['clients'] = clients
+        file_data['unregister'] = new_unregister_list
+        with open(CLIENTS_DATA_FILENAME, 'w') as file:
+            json.dump(file_data, file, indent=4)
+            return True
+    else:
+        return False
 
 
 def get_terminals():
