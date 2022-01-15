@@ -14,7 +14,7 @@
             <tr>
                 <td>{{ terminal['terminal_id'] }}</td>
                 <td>{{ terminal['type'] }}</td>
-                <td><a href="{{ url_for('remove_gate', terminal_id=terminal['terminal_id']) }}"><button class="delete_btt">Usuń</button></a></td>
+                <td><a href="{{ url_for('remove_gate', terminal_id=terminal['terminal_id']) }}"><button class="add-button">Usuń</button></a></td>
             </tr>
         {% endfor %}
         </tbody>

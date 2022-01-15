@@ -24,13 +24,7 @@
             "name": "Wislawa",
             "surname": "Szymborska",
             "card_number": 102,
-            "entry_time": "20:05:52"
-        },
-        {
-            "name": "Jan",
-            "surname": "Kowalski",
-            "card_number": 101,
-            "entry_time": "20:12:25"
+            "entry_time": "13:02:17"
         }
     ],
     "pending": [
@@ -53,5 +47,13 @@
             "card_number": 106
         }
     ],
-    "next_card_number": 107
+    "unregister": [
+        {
+            "name": "Jan",
+            "surname": "Kowalski",
+            "date_of_birth": "12-12-2000",
+            "card_number": 101
+        }
+    ],
+    "next_card_number": 115
 }

@@ -43,15 +43,14 @@ def process_message(client, userdata, message):
     message_decoded = (str(message.payload.decode("utf-8"))).split(".")
     print(message_decoded[0] + " : " + message_decoded[1])
     a_list = message_decoded[0].split()
-    map_object = map(int, a_list)
 
     if message_decoded[1] == "ALL":
-        client_list = list(map_object)
+        client_list = a_list
         global random_card
         random_card = random.choice(client_list)
     else:
         global active_list
-        active_list = list(map_object)
+        active_list = a_list
 
 
 def add_card_window():
