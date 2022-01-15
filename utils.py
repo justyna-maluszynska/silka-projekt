@@ -1,5 +1,5 @@
 import json
-from random import randint, choice
+from random import choice
 
 from config import CLIENTS_DATA_FILENAME, TERMINALS_DATA_FILENAME, ENTRANCES_HISTORY
 
@@ -190,12 +190,18 @@ def get_terminals():
 
 def add_terminal(new_id, gate_type):
     file_data = load_data(TERMINALS_DATA_FILENAME)
-    file_data['terminals'].append({
-        "terminal_id": new_id,
-        "type": gate_type
-    })
-    with open(TERMINALS_DATA_FILENAME, 'w') as file:
-        json.dump(file_data, file, indent=4)
+    terminal_with_id = list(filter(lambda x: x["terminal_id"] == new_id, file_data['terminals']))
+    if len(terminal_with_id) > 0:
+        return False
+    else:
+        file_data = load_data(TERMINALS_DATA_FILENAME)
+        file_data['terminals'].append({
+            "terminal_id": new_id,
+            "type": gate_type
+        })
+        with open(TERMINALS_DATA_FILENAME, 'w') as file:
+            json.dump(file_data, file, indent=4)
+    return True
 
 
 def remove_terminal(terminal_id):

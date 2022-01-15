@@ -100,8 +100,10 @@ def add_gate():
 def addgate_handle():
     new_id = request.form['terminal_id']
     gate_type = request.form['type']
-    add_terminal(new_id, gate_type)
-    return terminals()
+    if add_terminal(new_id, gate_type):
+        return terminals()
+    else:
+        return render_template("message.html", message="Terminal o podanej nazwie już istnieje")
 
 
 @app.route('/<terminal_id>/remove_gate')
@@ -115,7 +117,7 @@ def remove_client(client_card_number):
     if unregister(client_card_number):
         return clients()
     else:
-        return render_template("notlisted.html")
+        return render_template("message.html", message="Karta nie znajduje sie na liście wyrejestrowanych. Przeciągnij ponownie przez czytnik")
 
 
 @app.route("/clients")
