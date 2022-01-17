@@ -7,7 +7,7 @@ from tkinter import CENTER
 import paho.mqtt.client as mqtt
 
 # The terminal ID - can be any string.
-terminal_id = "Gate3"
+terminal_id = "Gate101"
 # The broker name or IP address.
 # broker = "localhost"
 broker = "192.168.8.101"

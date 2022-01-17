@@ -35,7 +35,8 @@ def handle_card_id(client, userdata, message):
             pass
     elif message_decoded[1] == "ACTIVATE":
         if validate_terminal(message_decoded[0]):
-            print(time.ctime() + ", " + message_decoded[2] + " used the RFID card to " + message_decoded[1])
+            print(time.ctime() + ", " + message_decoded[2] + " used the RFID card to " + message_decoded[1]
+                  + " : " + message_decoded[0])
             t = time.ctime().split()
             client_a = get_client_data(int(message_decoded[2]))
             enter_client(int(message_decoded[2]), t[3], client_a)
@@ -43,7 +44,8 @@ def handle_card_id(client, userdata, message):
             pass
     elif message_decoded[1] == "DEACTIVATE":
         if validate_terminal(message_decoded[0]):
-            print(time.ctime() + ", " + message_decoded[2] + " used the RFID card to " + message_decoded[1])
+            print(time.ctime() + ", " + message_decoded[2] + " used the RFID card to " + message_decoded[1]
+                  + " : " + message_decoded[0])
             get_away_client(int(message_decoded[2]))
         else:
             pass
