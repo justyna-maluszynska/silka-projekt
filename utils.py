@@ -187,10 +187,12 @@ def add_to_unregister():
     file_data = load_data(CLIENTS_DATA_FILENAME)
     card_numbers = [x["card_number"] for x in file_data['clients']]
     card_number = choice(card_numbers)
-    unregister_client = list(filter(lambda x: x["card_number"] == card_number, file_data['clients']))
-    file_data['unregister'].append(unregister_client)
-    with open(CLIENTS_DATA_FILENAME, 'w') as file:
-        json.dump(file_data, file, indent=4)
+    active_clients = get_active_clients_id()
+    if str(card_number) not in active_clients:
+        unregister_client = list(filter(lambda x: x["card_number"] == card_number, file_data['clients']))
+        file_data['unregister'].append(unregister_client)
+        with open(CLIENTS_DATA_FILENAME, 'w') as file:
+            json.dump(file_data, file, indent=4)
 
 
 def unregister(card_number):

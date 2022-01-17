@@ -1,22 +1,22 @@
 {
     "clients": [
         {
-            "name": "Jan",
-            "surname": "Kowalski",
-            "date_of_birth": "12-12-2000",
-            "card_number": 101
-        },
-        {
             "name": "Wislawa",
             "surname": "Szymborska",
-            "date_of_birth": "03-01-1991",
+            "date_of_birth": "1991-01-03",
             "card_number": 102
         },
         {
             "name": "Jan",
             "surname": "Kowalski",
-            "date_of_birth": "27-03-2002",
+            "date_of_birth": "2002-03-27",
             "card_number": 103
+        },
+        {
+            "name": "Andy",
+            "surname": "Siem",
+            "date_of_birth": "1976-12-12",
+            "card_number": 105
         }
     ],
     "active_clients": [
@@ -24,7 +24,13 @@
             "name": "Jan",
             "surname": "Kowalski",
             "card_number": 103,
-            "entry_time": "13:45:09"
+            "entry_time": "14:22:51"
+        },
+        {
+            "name": "Andy",
+            "surname": "Siem",
+            "card_number": 105,
+            "entry_time": "14:24:41"
         }
     ],
     "pending": [
@@ -35,25 +41,12 @@
             "card_number": 104
         },
         {
-            "terminal": "Gate2",
-            "date": "12-01-2022",
-            "time": "15:05:33",
-            "card_number": 105
-        },
-        {
             "terminal": "Gate1",
             "date": "13-01-2022",
             "time": "22:24:07",
             "card_number": 106
         }
     ],
-    "unregister": [
-        {
-            "name": "Jan",
-            "surname": "Kowalski",
-            "date_of_birth": "12-12-2000",
-            "card_number": 101
-        }
-    ],
+    "unregister": [],
     "next_card_number": 115
 }
