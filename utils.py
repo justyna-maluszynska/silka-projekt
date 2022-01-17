@@ -2,6 +2,7 @@ import json
 from random import choice
 from datetime import date
 import time
+import pandas as pd
 
 from config import CLIENTS_DATA_FILENAME, TERMINALS_DATA_FILENAME, ENTRANCES_HISTORY
 
@@ -11,6 +12,11 @@ def load_data(filename):
         file_data = json.load(file)
 
     return file_data
+
+
+def convert_to_csv():
+    df = pd.read_json(ENTRANCES_HISTORY)
+    df.to_csv(r'data/history.csv', index=None)
 
 
 def get_clients():
