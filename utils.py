@@ -1,5 +1,7 @@
 import json
 from random import choice
+from datetime import date
+import time
 
 from config import CLIENTS_DATA_FILENAME, TERMINALS_DATA_FILENAME, ENTRANCES_HISTORY
 
@@ -70,6 +72,29 @@ def get_history_of_clients_entrances(client_card_number: int):
     return filtered_data
 
 
+def get_active_client_data(card_number):
+    active_clients = load_data(CLIENTS_DATA_FILENAME)['active_clients']
+    client_data = list(filter(lambda x: x["card_number"] == card_number, active_clients))[0]
+    return client_data
+
+
+def add_history_client(card_number, exit_time):
+    file_data = load_data(ENTRANCES_HISTORY)
+    client_data = get_active_client_data(card_number)
+
+    file_data['entrances'].append({
+        "name": client_data["name"],
+        "surname": client_data["surname"],
+        "card_number": card_number,
+        "entry_time": client_data['entry_time'],
+        "exit_time": exit_time,
+        "date": date.today().strftime("%d-%m-%Y")
+    })
+
+    with open(ENTRANCES_HISTORY, 'w') as file:
+        json.dump(file_data, file, indent=4)
+
+
 def get_client_data(card_number: int):
     clients = get_clients()
     client_data = list(
@@ -107,6 +132,7 @@ def enter_client(card_number, entry_time, client_data):
 
 # klient wychodzi z siłki
 def get_away_client(card_number):
+    add_history_client(card_number, time.ctime().split()[3])
     file_data = load_data(CLIENTS_DATA_FILENAME)
     active_clients = list(filter(lambda x: x["card_number"] != card_number, file_data['active_clients']))
     file_data['active_clients'] = active_clients
