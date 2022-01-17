@@ -1,28 +1,31 @@
 {% extends "base.html" %}
 
 {% block content %}
-<table class="clients-table">
-  <thead>
-    <tr>
-      <td>Imię</td>
-      <td>Nazwisko</td>
-      <td>Numer karty</td>
-      <td>Godzina wejścia</td>
-      <td>Godzina wyjścia</td>
-      <td>Data</td>
-    </tr>
-  </thead>
-  <tbody>
-    {% for entrance in entrances %}
-    <tr>
-      <td>{{ entrance['name'] }}</td>
-      <td>{{ entrance['surname'] }}</td>
-      <td>{{ entrance['card_number'] }}</td>
-      <td>{{ entrance['entry_time'] }}</td>
-      <td>{{ entrance['exit_time'] }}</td>
-      <td>{{ entrance['date'] }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+    <table class="clients-table">
+        <thead>
+        <tr>
+            <td>Imię</td>
+            <td>Nazwisko</td>
+            <td>Numer karty</td>
+            <td>Godzina wejścia</td>
+            <td>Godzina wyjścia</td>
+            <td>Data</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for entrance in entrances %}
+            <tr>
+                <td>{{ entrance['name'] }}</td>
+                <td>{{ entrance['surname'] }}</td>
+                <td>{{ entrance['card_number'] }}</td>
+                <td>{{ entrance['entry_time'] }}</td>
+                <td>{{ entrance['exit_time'] }}</td>
+                <td>{{ entrance['date'] }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <form method="post" action="{{ url_for('history_generate') }}">
+        <input class="send_btt" type="submit" value="Generuj raport">
+    </form>
 {% endblock %}

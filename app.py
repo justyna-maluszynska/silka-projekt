@@ -1,4 +1,3 @@
-import threading
 import time
 
 from flask import Flask, render_template, request, redirect, url_for
@@ -160,6 +159,13 @@ def history():
 @app.route("/history-of-client/<client_card_number>")
 def history_of_client(client_card_number):
     entrances = get_history_of_clients_entrances(int(client_card_number))
+    return render_template("history.html", entrances=entrances)
+
+
+@app.route("/history/generate", methods=['POST'])
+def history_generate():
+    convert_to_csv()
+    entrances = get_history_of_all_entrances()
     return render_template("history.html", entrances=entrances)
 
 
