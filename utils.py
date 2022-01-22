@@ -196,7 +196,7 @@ def add_to_unregister():
     active_clients = get_active_clients_id()
     if str(card_number) not in active_clients:
         unregister_client = list(filter(lambda x: x["card_number"] == card_number, file_data['clients']))
-        file_data['unregister'].append(unregister_client)
+        file_data['unregister'].append(unregister_client[0])
         with open(CLIENTS_DATA_FILENAME, 'w') as file:
             json.dump(file_data, file, indent=4)
 
