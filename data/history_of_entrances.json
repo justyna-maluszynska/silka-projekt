@@ -151,6 +151,62 @@
             "entry_time": "14:22:48",
             "exit_time": "14:24:34",
             "date": "17-01-2022"
+        },
+        {
+            "name": "Jan",
+            "surname": "Kowalski",
+            "card_number": 103,
+            "entry_time": "14:22:51",
+            "exit_time": "19:43:59",
+            "date": "20-01-2022"
+        },
+        {
+            "name": "Andy",
+            "surname": "Siem",
+            "card_number": 105,
+            "entry_time": "14:24:41",
+            "exit_time": "20:15:39",
+            "date": "20-01-2022"
+        },
+        {
+            "name": "Wislawa",
+            "surname": "Szymborska",
+            "card_number": 102,
+            "entry_time": "20:15:43",
+            "exit_time": "20:17:45",
+            "date": "20-01-2022"
+        },
+        {
+            "name": "Andy",
+            "surname": "Siem",
+            "card_number": 105,
+            "entry_time": "21:04:24",
+            "exit_time": "21:04:26",
+            "date": "20-01-2022"
+        },
+        {
+            "name": "Olga",
+            "surname": "Tokarczuk",
+            "card_number": 104,
+            "entry_time": "21:04:28",
+            "exit_time": "21:04:30",
+            "date": "20-01-2022"
+        },
+        {
+            "name": "Jan",
+            "surname": "Kowalski",
+            "card_number": 103,
+            "entry_time": "21:04:23",
+            "exit_time": "21:04:38",
+            "date": "20-01-2022"
+        },
+        {
+            "name": "Wis\u0142awa",
+            "surname": "Szymborska",
+            "card_number": 115,
+            "entry_time": "21:04:45",
+            "exit_time": "21:05:41",
+            "date": "20-01-2022"
         }
     ]
 }

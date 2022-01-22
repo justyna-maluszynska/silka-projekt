@@ -6,7 +6,7 @@
         },
         {
             "terminal_id": "Gate3",
-            "type": "bramka wejsciowa"
+            "type": "terminal rejestracji"
         }
     ]
 }
