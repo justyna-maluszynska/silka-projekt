@@ -5,8 +5,12 @@
             "type": "terminal rejestracji"
         },
         {
+            "terminal_id": "Gate101",
+            "type": "bramka wejsciowa"
+        },
+        {
             "terminal_id": "Gate3",
-            "type": "terminal rejestracji"
+            "type": "bramka wejsciowa"
         }
     ]
 }

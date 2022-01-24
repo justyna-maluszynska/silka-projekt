@@ -9,10 +9,10 @@ import paho.mqtt.client as mqtt
 # The terminal ID - can be any string.
 terminal_id = "Gate1"
 # The broker name or IP address.
-# broker = "192.168.56.1"
+broker = "192.168.56.1"
 # broker = "127.0.0.1"
 # broker = "10.0.0.1"
-broker = "localhost"
+# broker = "localhost"
 
 # The MQTT client.
 client = mqtt.Client()
@@ -53,9 +53,6 @@ def add_card_window():
 def connect_to_broker():
     # Connect to the broker.
     client.connect(broker)
-    client.loop_start()
-    # Set subscriber
-    client.subscribe(("card/register/+", 0))
     # Send message about conenction.
     send_message("Client connected")
 
@@ -63,7 +60,6 @@ def connect_to_broker():
 def disconnect_from_broker():
     # Send message about disconenction.
     send_message("Client disconnected")
-    client.loop_stop()
     # Disconnet the client.
     client.disconnect()
 
