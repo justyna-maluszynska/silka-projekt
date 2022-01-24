@@ -17,7 +17,7 @@ client = Mqtt(app)
 @client.on_connect()
 def handle_connect(client, userdata, flags, rc):
     client.subscribe(("card/check/+", 2))
-    client.subscribe(("card/register/+", 2))
+    client.subscribe(("card/register/+", 0))
 
 
 # metoda dla konkretnego tematu

@@ -10,8 +10,10 @@ import paho.mqtt.client as mqtt
 terminal_id = "Gate3"
 # The broker name or IP address.
 # broker = "localhost"
-broker = "192.168.8.101"
+# broker = "192.168.8.101"
 # broker = "10.0.0.1"
+broker = "192.168.56.1"
+
 
 active_list = []
 random_card = 0
